@@ -12,11 +12,11 @@ class OnBoardScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SvgPicture.asset(
-              'assets/images/onboard.svg', // Gambar SVG untuk on board
+              'assets/onboard.svg',
               height: 300.0,
               width: 300.0,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Welcome To\nGuardian Tap',
               textAlign: TextAlign.center,
@@ -40,11 +40,14 @@ class OnBoardScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()), // Navigasi ke LoginScreen
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          SignInScreen()), // Navigasi ke LoginScreen
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF8B0000), // Use primary for background color
+                backgroundColor:
+                    Color(0xFFB45858), // Use primary for background color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
