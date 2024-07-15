@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:guardiantap/screen/view/forget_password.dart';
 
-import 'botton_nav_bar.dart';
 import 'home.dart';
 import 'sign_up.dart';
 
@@ -18,8 +17,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController emailTextController = TextEditingController();
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -77,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: TextFormField(
-                    controller: _emailTextController,
+                    controller: emailTextController,
                     decoration: InputDecoration(
                       hintText: "Email",
                       hintStyle: GoogleFonts.poppins(
@@ -132,7 +131,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: TextFormField(
-                    controller: _passwordTextController,
+                    controller: passwordTextController,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       hintText: "Password",
@@ -185,17 +184,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     onChanged: (value) {},
                   ),
                 ),
-                // reusableTextField("Enter Email", Icons.person_outline, false,
-                //     _emailTextController),
+            
                 const SizedBox(
                   height: 10,
                 ),
-                // reusableTextField(
-                //   "Enter Password",
-                //   Icons.lock_outline,
-                //   true,
-                //   _passwordTextController,
-                // ),
+          
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -229,13 +222,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     onPressed: () {
                       FirebaseAuth.instance
                           .signInWithEmailAndPassword(
-                              email: _emailTextController.text,
-                              password: _passwordTextController.text)
+                              email: emailTextController.text,
+                              password: passwordTextController.text)
                           .then((value) {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const BottomNavScreen(),
+                            builder: (context) => const HomeScreen(),
                           ),
                           (route) => false,
                         );

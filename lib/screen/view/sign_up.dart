@@ -39,12 +39,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: Colors.white,
-          ), // Ubah warna panah kembali menjadi putih
+          ),
           onPressed: () {
-            Navigator.of(context)
-                .pop(); // Navigasi kembali ke halaman sebelumnya
+            Navigator.of(context).pop();
           },
         ),
       ),

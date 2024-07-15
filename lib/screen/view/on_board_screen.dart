@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'login_screen.dart'; // Pastikan import halaman LoginScreen yang benar
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login_screen.dart';
 
 class OnBoardScreen extends StatelessWidget {
+  const OnBoardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +31,7 @@ class OnBoardScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'we\'re here to provide immediate assistance with just a tap.',
               textAlign: TextAlign.center,
@@ -35,23 +40,27 @@ class OnBoardScreen extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
+              onPressed: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setBool('hasSeenOnboarding', true);
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                      builder: (context) =>
-                          SignInScreen()), // Navigasi ke LoginScreen
+                    builder: (context) => const SignInScreen(),
+                  ),
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Color(0xFFB45858), // Use primary for background color
+                backgroundColor: const Color(0xFFB45858),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 50.0,
+                  vertical: 15.0,
+                ),
               ),
               child: Text(
                 'Get Started',
